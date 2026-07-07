@@ -3,7 +3,7 @@ import Grid from "./components/grid";
 import Title from "./components/title";
 
 const tarefas = [
-  { id: 1, descricao: "Fazer compras", concluida: false },
+  { id: 1, descricao: "Fazer compras", concluida: true },
   { id: 2, descricao: "Lavar o carro", concluida: true },
   { id: 3, descricao: "Estudar TypeScript", concluida: false } // só pra testar, depois vamos retirar isso
 ];
