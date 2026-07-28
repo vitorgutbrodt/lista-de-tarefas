@@ -5,6 +5,7 @@
     padding: 1rem;
     margin-left: 20%;
     margin-right: 20%;
+    width: 50%;
 }
 
 .descricao {
@@ -48,3 +49,10 @@
     background-color: #e60000;
 }
 
+@media (max-width: 600px) {
+    .card {
+        width: 70%; 
+        margin-left: 0%;     
+        padding: 0.5rem;        
+    }
+}

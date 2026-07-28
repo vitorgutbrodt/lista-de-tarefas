@@ -1,13 +1,42 @@
+"use client";
+
 import styles from "./page.module.css";
 import Grid from "./components/grid";
 import Title from "./components/title";
 import NovaTarefa from "./components/nova-tarefa";
 import Tarefa from "@/types/types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useContadorTarefas from "./hooks/useContadorTarefas";
+console.log("useContadorTarefas", useContadorTarefas);
 
 export default function Home() {
 
   const [tarefas, setTarefas] = useState<Tarefa[]>([]);
+
+  useEffect(() => {  // trecho para carregar tarefas salvas no localStorage "getItem"
+    const dados = localStorage.getItem("tarefas");
+
+    if (dados) {
+      setTarefas(JSON.parse(dados));
+    }
+  }, []);
+
+  useEffect(() => { // trecho para salvar tarefas no localStorage "setItem"
+  localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}, [tarefas]);
+
+  const contadorTarefas = useContadorTarefas(tarefas);
+
+  const alternarConcluida = (id: number) => {
+    const novasTarefas = tarefas.map((tarefa) => {
+      if (tarefa.id === id) {
+        return { ...tarefa, concluida: !tarefa.concluida };
+      }
+      return tarefa;
+    });
+    setTarefas(novasTarefas);
+  }
+
   const [descricao, setDescricao] = useState("");
   const handleAddTarefa = () => {
     const novaTarefa: Tarefa = {
@@ -27,8 +56,8 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <Title title="Administre suas tarefas aqui!"/>
-      <Grid tarefas={tarefas}/>
+      <Title title={`Você tem ${contadorTarefas} tarefas`} />
+      <Grid tarefas={tarefas} alternarConcluida={alternarConcluida} />
       <NovaTarefa 
         descricao={descricao} 
         setDescricao={setDescricao}
