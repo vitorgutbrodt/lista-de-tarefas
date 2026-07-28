@@ -42,4 +42,10 @@ npm install
 npm run dev
 ```
 
+5. Para executar os testes:
+
+```bash
+npm test
+```
+
 Desenvolvido por João Vitor Gutbrodt, Projeto de estudo de React
