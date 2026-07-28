@@ -5,13 +5,14 @@ import styles from "./grid.module.css";
 type Props = {
     tarefas: Tarefa[];
     alternarConcluida: (id: number) => void;
+    excluirTarefa: (id: number) => void;
 }
 
-const Grid = ({tarefas, alternarConcluida}: Props) => {
+const Grid = ({tarefas, alternarConcluida, excluirTarefa}: Props) => {
     return (
         <section className={styles.grid}>
             {tarefas.map((tarefa) => (
-                <Card key={tarefa.id} tarefa={tarefa} alternarConcluida={alternarConcluida} />
+                <Card key={tarefa.id} tarefa={tarefa} alternarConcluida={alternarConcluida} excluirTarefa={excluirTarefa} />
             ))}
         </section>
 

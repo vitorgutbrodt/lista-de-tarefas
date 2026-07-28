@@ -7,11 +7,14 @@ import { useState } from "react";
 type Props = {
     tarefa: Tarefa;
     alternarConcluida: (id: number) => void;
+    excluirTarefa: (id: number) => void;
 }
 
-const Card = ({ tarefa, alternarConcluida }: Props) => {
+const Card = ({ tarefa, alternarConcluida, excluirTarefa }: Props) => {
 
-    const { id, descricao, concluida } = tarefa;     
+    const { id, descricao, concluida } = tarefa;    
+    
+    console.log(excluirTarefa);
 
     return (
         <div  key={id} className={styles.card}>
@@ -21,7 +24,9 @@ const Card = ({ tarefa, alternarConcluida }: Props) => {
             <button className={styles.botaoAlternar} onClick={() => alternarConcluida(id)}>
                 {concluida ? "Ainda preciso fazer..." : "Já fiz!"}
             </button>
-            <button className={styles.botaoExcluir}>Excluir</button>
+            <button className={styles.botaoExcluir} onClick={() => excluirTarefa(id)}>
+                Excluir
+            </button>
         </div>
     )
 

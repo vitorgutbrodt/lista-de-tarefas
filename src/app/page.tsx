@@ -27,7 +27,7 @@ export default function Home() {
 
   const contadorTarefas = useContadorTarefas(tarefas);
 
-  const alternarConcluida = (id: number) => {
+  const alternarConcluida = (id: number) => { // função para alternar o estado de conclusão da tarefa
     const novasTarefas = tarefas.map((tarefa) => {
       if (tarefa.id === id) {
         return { ...tarefa, concluida: !tarefa.concluida };
@@ -36,6 +36,12 @@ export default function Home() {
     });
     setTarefas(novasTarefas);
   }
+
+  const excluirTarefa = (id: number) => { // meio óbvio, mas função para excluir tarefa
+  const novasTarefas = tarefas.filter((tarefa) => tarefa.id !== id);
+
+  setTarefas(novasTarefas);
+  };
 
   const [descricao, setDescricao] = useState("");
   const handleAddTarefa = () => {
@@ -57,7 +63,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Title title={`Você tem ${contadorTarefas} tarefas`} />
-      <Grid tarefas={tarefas} alternarConcluida={alternarConcluida} />
+      <Grid tarefas={tarefas} alternarConcluida={alternarConcluida} excluirTarefa={excluirTarefa} />
       <NovaTarefa 
         descricao={descricao} 
         setDescricao={setDescricao}
