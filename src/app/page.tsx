@@ -7,7 +7,6 @@ import NovaTarefa from "./components/nova-tarefa";
 import Tarefa from "@/types/types";
 import { useState, useEffect } from "react";
 import useContadorTarefas from "./hooks/useContadorTarefas";
-console.log("useContadorTarefas", useContadorTarefas);
 
 export default function Home() {
 

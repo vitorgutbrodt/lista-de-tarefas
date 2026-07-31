@@ -2,7 +2,6 @@
 
 import Tarefa from "@/types/types";
 import styles from "./card.module.css";
-import { useState } from "react";
 
 type Props = {
     tarefa: Tarefa;
@@ -13,9 +12,7 @@ type Props = {
 const Card = ({ tarefa, alternarConcluida, excluirTarefa }: Props) => {
 
     const { id, descricao, concluida } = tarefa;    
-    
-    console.log(excluirTarefa);
-
+      
     return (
         <div  key={id} className={styles.card}>
             <p className={concluida ? styles.concluida : styles.descricao}>

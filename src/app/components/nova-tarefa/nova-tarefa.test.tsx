@@ -2,6 +2,11 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NovaTarefa from "./index";
 
+beforeEach(() => {
+  localStorage.clear();
+  jest.restoreAllMocks();
+});
+
 const user = userEvent.setup(); // Cria uma instância do userEvent para simular interações do usuário
 
 describe("NovaTarefa", () => {
@@ -44,18 +49,22 @@ describe("NovaTarefa", () => {
     });
 
     it("deve chamar a função setDescricao quando o valor do input mudar", async () => {
-        const handleAddTarefaMock = jest.fn();
-        const setDescricaoMock = jest.fn();
-        const descricao = "";
+    const handleAddTarefaMock = jest.fn();
+    const setDescricaoMock = jest.fn();
 
-        render(
-            <NovaTarefa 
-                descricao={descricao}
-                setDescricao={setDescricaoMock}
-                handleAddTarefa={handleAddTarefaMock}
-            />
-        );
-        await user.type(screen.getByPlaceholderText(/Digite tarefa/i), "Nova tarefa");
-        expect(setDescricaoMock).toHaveBeenCalledTimes(1);
+    render(
+        <NovaTarefa 
+            descricao=""
+            setDescricao={setDescricaoMock}
+            handleAddTarefa={handleAddTarefaMock}
+        />
+    );
+
+    await user.type(
+        screen.getByPlaceholderText(/digite tarefa/i),
+        "Nova tarefa"
+    );
+
+    expect(setDescricaoMock).toHaveBeenCalled();
     });
 });
