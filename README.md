@@ -27,7 +27,7 @@ Aplicação web de uma lista de tarefas desenvolvida em Next.js, com foco na org
 2. Acesse a pasta do projeto:
 
 ```bash
-cd blog-opiniao
+cd lista-tarefas
 ```
 
 3. Instale as dependências:
